@@ -19,14 +19,15 @@
     "zod": "^4.0.5"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "prisma": "^6.13.0",
+    "@eslint/eslintrc": "^3.0.0",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
     "eslint-config-next": "15.4.1",
-    "typescript": "^5"
+    "typescript": "^5.0.0"
   }
 }
