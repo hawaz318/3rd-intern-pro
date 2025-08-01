@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PostSchema } from '@/validators/postValidator';
 import { withAuth } from '@/middlewares/authMiddleware';
 
-// GET /api/posts
+
 export const GET = withAuth(async (req: NextRequest, user: any) => {
   const { searchParams } = new URL(req.url);
   const search = searchParams.get('search') || '';
@@ -22,7 +22,7 @@ export const GET = withAuth(async (req: NextRequest, user: any) => {
       ]
     },
     include: {
-      user: {
+      User: {
         select: {
           id: true,
           name: true,
@@ -36,7 +36,7 @@ export const GET = withAuth(async (req: NextRequest, user: any) => {
   return NextResponse.json(posts);
 });
 
-// POST /api/posts
+
 export const POST = withAuth(async (req: NextRequest, user: any) => {
   const body = await req.json();
   const validated = PostSchema.safeParse(body);
