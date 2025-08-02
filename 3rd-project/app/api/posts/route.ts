@@ -3,8 +3,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { PostSchema } from '@/validators/postValidator';
 import { withAuth } from '@/middlewares/authMiddleware';
 
-
-export const GET = withAuth(async (req: NextRequest, user: any) => {
+type authUser = {
+  id: string;
+  name: string;
+  email: string;
+}
+export const GET = withAuth(async (req: NextRequest, user: authUser) => {
   const { searchParams } = new URL(req.url);
   const search = searchParams.get('search') || '';
   const category = searchParams.get('category') || '';
@@ -37,7 +41,7 @@ export const GET = withAuth(async (req: NextRequest, user: any) => {
 });
 
 
-export const POST = withAuth(async (req: NextRequest, user: any) => {
+export const POST = withAuth(async (req: NextRequest, user: authUser) => {
   const body = await req.json();
   const validated = PostSchema.safeParse(body);
 
@@ -48,7 +52,7 @@ export const POST = withAuth(async (req: NextRequest, user: any) => {
   const post = await prisma.post.create({
     data: {
       ...validated.data,
-      userId: user.id
+      userId: Number(user.id)
     }
   });
 
