@@ -8,7 +8,7 @@ type authUser = {
   name: string;
   email: string;
 }
-export const GET = withAuth(async (req: NextRequest, user: authUser) => {
+export const GET = withAuth(async (req: NextRequest, _user: authUser) => {
   const { searchParams } = new URL(req.url);
   const search = searchParams.get('search') || '';
   const category = searchParams.get('category') || '';
